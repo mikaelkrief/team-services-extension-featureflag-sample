@@ -1,0 +1,32 @@
+{
+  "scripts": {
+    "build": "npm run lint && npm run clean && npm run webpack",
+    "webpack": "webpack --progress --colors --config webpack.config.js --output-path ./dist -p",
+    "postbuild": "npm run package",
+    "package": "tfx extension create  --rev-version",
+    "gallery-publish": "tfx extension publish --rev-version  --token 53plbqfsibqnynajzc3ac2gvayqdaz2kz65bv7a47nmjduwmbruq",
+    "clean": "rimraf ./dist && rimraf ./*.vsix",
+    "lint": "tslint -c tslint.json 'src/*.ts'"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.1",
+    "tfx-cli": "^0.4.8",
+    "typescript": "^2.1.4",
+    "cpx": "^1.5.0",
+    "ts-loader": "^2.0.0",
+    "tslint": "^5.2.0",
+    "tslint-loader": "^3.5.3",
+    "webpack": "^2.6.1"
+  },
+  "dependencies": {
+    "@types/jquery": "^2.0.46",
+    "@types/q": "1.0.0",
+    "vss-web-extension-sdk": "^2.117.0",
+    "applicationinsights-js": "^1.0.9",
+    "telemetryclient-team-services-extension": "*",
+    "ldclient-js": "^1.1.12"
+  },
+  "name": "sample",
+  "private": true,
+  "version": "0.0.0"
+}

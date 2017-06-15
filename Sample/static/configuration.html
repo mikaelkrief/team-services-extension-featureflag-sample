@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link href="css/app.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="widget-configuration">
+        <div class="dropdown" id="query-path-dropdown">
+            <label class="label">Query: </label>
+            <div class="wrapper">
+                <select id="query-path">						
+						<option value="Shared Queries/Feedback">Shared Queries/Feedback</option>
+						<option value="Shared Queries/Current Sprint/Work in Progress">Shared Queries/Current Sprint/Work in Progress</option>
+						<option value="Shared Queries/Current Sprint/Test Cases">hared Queries/Current Sprint/Test Cases</option>											
+					</select>
+            </div>
+        </div>
+
+        <fieldset class="checkbox" id="panel-showquerydetails" style="margin-top:10px;">
+            <input type="checkbox" id="showquerydetails" value="id" name="check" checked="true">
+            <label for="check-option1">Show Query details</label><br/>
+        </fieldset>
+
+        <div id="ff-demo" style="margin-top:15px;background-color:#eff6fc;display:block">
+            <legend>Mode of the ordering - Enable this preview feature</legend>
+            <label class="switch"><input type="checkbox" id="enableff"><div class="slider round"></div></label>
+            <fieldset class="radio" id="display-options">
+                <legend>Display as </legend>
+                <input type="radio" id="radio-option1" value="ordered" name="radio" checked="true">
+                <label for="radio-option1">Ordered List</label><br/>
+                <input type="radio" id="radio-option2" value="unordered" name="radio">
+                <label for="radio-option2">Unordered List</label><br/>
+            </fieldset>
+        </div>
+
+    </div>
+    <script src="../lib/VSS.SDK.min.js"></script>
+    <script src="../lib/ldclient.min.js"></script>
+    <script type="text/javascript">
+        VSS.init({
+            explicitNotifyLoaded: true,
+            setupModuleLoader: true,
+            usePlatformScripts: true,
+            usePlatformStyles: true
+        });
+
+        VSS.ready(function () {
+            VSS.require(["dist/configuration"], function (configuration) { });
+        });
+    </script>
+</body>
+
+</html>
