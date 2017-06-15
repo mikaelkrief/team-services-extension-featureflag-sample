@@ -3,9 +3,9 @@ import Q = require("q");
 export class LaunchDarklyService {
 
     // Private Settings to Tokenize
-    private envId: string = "590348c958ed570a3af8a496";
-    private static UriHashKey: string = "https://vstsextcrypto.azurewebsites.net/api/GetHashKey?code=aqi3cVQPaTfQaT0dBaQoJ0k/LiVlZVmQU4FRHpgbKPHbHIuZ9y4eoA==";
-    private static UriUpdateFlagUser: string = "https://vstsextcrypto.azurewebsites.net/api/UpdateUserFeature?code=erZlsJHBh9u/bwO1ZCO4czrvzqMA9XpUJjV6a9wHuMM1ajwprmcOKw==";
+    private envId: string = "__Your_ENVID__";
+    private static UriHashKey: string = "__YOUR_AZUREFUNCTION_HASKEY_FUNCTION__";
+    private static UriUpdateFlagUser: string = "__YOUR_AZUREFUNCTION_UPDATEUSERFLAG_FUNCTION__";
     // ----------------------------
     public ldClient: any;
     private static instance: LaunchDarklyService;
