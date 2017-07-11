@@ -1,0 +1,11 @@
+﻿{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "AzureWebJobsDashboard": ""
+  },
+  "Host": {
+    "LocalHttpPort": 7071, // If specified, this is the default port for "host start" and "run". Can be overridden by using the --port command-line option.
+    "CORS": "*" // Origins to allow in the CORS setting.
+  }
+}

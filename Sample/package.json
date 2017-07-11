@@ -21,10 +21,11 @@
   "dependencies": {
     "@types/jquery": "^2.0.46",
     "@types/q": "1.0.0",
-    "vss-web-extension-sdk": "^2.117.0",
+    "applicationinsights": "^0.21.0",
     "applicationinsights-js": "^1.0.9",
+    "ldclient-js": "^1.1.12",
     "telemetryclient-team-services-extension": "*",
-    "ldclient-js": "^1.1.12"
+    "vss-web-extension-sdk": "^2.117.0"
   },
   "name": "sample",
   "private": true,

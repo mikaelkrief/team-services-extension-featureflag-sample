@@ -1,0 +1,9 @@
+﻿{
+  "frameworks": {
+    "net46":{
+      "dependencies": {
+        "System.IdentityModel.Tokens.Jwt": "4.0.4.403061554"
+      }
+    }
+  }
+}
