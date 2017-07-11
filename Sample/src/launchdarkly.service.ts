@@ -47,7 +47,8 @@ export class LaunchDarklyService {
         this.instance.ldClient.track(event);
     }
 
-    public static updateUserFeature(user, enable, feature/*, project, env*/): Promise<string> {
+    // not used for current time
+    /*public static updateUserFeature(user, enable, feature): Promise<string> {
         let deferred = Q.defer<string>();
         if (user) {
             $.ajax({
@@ -65,7 +66,7 @@ export class LaunchDarklyService {
             deferred.resolve(user.key);
         }
         return deferred.promise;
-    }
+    }*/
 
     private static hashUserKey(user, hash: boolean, appToken: string, userid: string): Promise<string> {
         let deferred = Q.defer<string>();
