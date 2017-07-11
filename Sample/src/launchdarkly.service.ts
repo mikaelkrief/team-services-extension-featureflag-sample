@@ -4,7 +4,7 @@ export class LaunchDarklyService {
 
     // Private Settings to Tokenize
     private envId: string = "__Your_ENVID__";
-    // private static UriHashKey: string = "__YOUR_AZUREFUNCTION_HASKEY_FUNCTION__";
+    private static UriHashKey: string = "__YOUR_AZUREFUNCTION_HASKEY_FUNCTION__";
     private static UriUpdateFlagUser: string = "__YOUR_AZUREFUNCTION_UPDATEUSERFLAG_FUNCTION__";
     // ----------------------------
     public ldClient: any;
@@ -14,18 +14,23 @@ export class LaunchDarklyService {
 
     constructor() { }
 
-    public static init(user: any): Promise<LaunchDarklyService> {
+     public static init(user: any, appToken: string, userid: string): Promise<LaunchDarklyService> {
+        console.log(userid);
         let deferred = Q.defer<LaunchDarklyService>();
         if (!this.instance) {
             this.instance = new LaunchDarklyService();
+            this.hashUserKey(user, true, appToken, userid).then((h) => {
+                this.instance.ldClient = LDClient.initialize(this.instance.envId, user, {
+                    hash: h
+                });
 
-            this.instance.ldClient = LDClient.initialize(this.instance.envId, user);
+                this.instance.ldClient.on("change", (flags) => {
+                    this.setFlags();
+                });
+                this.user = user;
 
-            this.instance.ldClient.on("change", (flags) => {
-                this.setFlags();
+                deferred.resolve(this.instance);
             });
-            this.user = user;
-            deferred.resolve(this.instance);
         }
         return deferred.promise;
     }
@@ -62,17 +67,14 @@ export class LaunchDarklyService {
         return deferred.promise;
     }
 
-    // not used
-    /*private static hashUserKey(user, hash: boolean): Promise<string> {
+    private static hashUserKey(user, hash: boolean, appToken: string, userid: string): Promise<string> {
         let deferred = Q.defer<string>();
         if (hash) {
             $.ajax({
-                url: "__YOUR_AZUREFUNCTION_HASKEY_FUNCTION__",
-                contentType: "application/json; charset=UTF-8",
+                url: this.UriHashKey,
                 type: "POST",
-                dataType: "json",
                 headers: { "Access-Control-Allow-Origin": "*" },
-                data: "{'userkey':'" + user.key + "'}",
+                data: { account: "" + user.key + "", token: "" + appToken + "" },
                 success: c => {
                     deferred.resolve(c);
                 }
@@ -81,5 +83,5 @@ export class LaunchDarklyService {
             deferred.resolve(user.key);
         }
         return deferred.promise;
-    }*/
+    }
 }
